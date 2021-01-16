@@ -17,7 +17,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-const defaultFields = "Type,TimeReceived,SequenceNum,SamplingRate,SamplerAddress,TimeFlowStart,TimeFlowEnd,Bytes,Packets,SrcAddr,DstAddr,Etype,Proto,SrcPort,DstPort,InIf,OutIf,SrcMac,DstMac,SrcVlan,DstVlan,VlanId,IngressVrfID,EgressVrfID,IPTos,ForwardingStatus,IPTTL,TCPFlags,IcmpType,IcmpCode,IPv6FlowLabel,FragmentId,FragmentOffset,BiFlowDirection,SrcAS,DstAS,NextHop,NextHopAS,SrcNet,DstNet,HasEncap,SrcAddrEncap,DstAddrEncap,ProtoEncap,EtypeEncap,IPTosEncap,IPTTLEncap,IPv6FlowLabelEncap,FragmentIdEncap,FragmentOffsetEncap,HasMPLS,MPLSCount,MPLS1TTL,MPLS1Label,MPLS2TTL,MPLS2Label,MPLS3TTL,MPLS3Label,MPLSLastTTL,MPLSLastLabel,HasPPP,PPPAddressControl"
+const defaultFields = "Type,TimeReceived,SequenceNum,SamplingRate,SamplerAddress,TimeFlowStart,TimeFlowEnd,Bytes,Packets,SrcAddr,DstAddr,Etype,Proto,SrcPort,DstPort,InIf,OutIf,SrcMac,DstMac,SrcVlan,DstVlan,VlanId,IngressVrfID,EgressVrfID,IPTos,ForwardingStatus,IPTTL,TCPFlags,IcmpType,IcmpCode,IPv6FlowLabel,FragmentId,FragmentOffset,BiFlowDirection,SrcAS,DstAS,NextHop,NextHopAS,SrcNet,DstNet,HasEncap,SrcAddrEncap,DstAddrEncap,ProtoEncap,EtypeEncap,IPTosEncap,IPTTLEncap,IPv6FlowLabelEncap,FragmentIdEncap,FragmentOffsetEncap,HasMPLS,MPLSCount,MPLS1TTL,MPLS1Label,MPLS2TTL,MPLS2Label,MPLS3TTL,MPLS3Label,MPLSLastTTL,MPLSLastLabel,HasPPP,PPPAddressControl,K8sSrcPodName,K8sSrcPodNamespace,K8sSrcPodNode,K8sDstPodName,K8sDstPodNamespace,K8sDstPodNode"
 
 var (
 	MessageFields = flag.String("message.fields", defaultFields, "The list of fields to include in flow messages")
@@ -229,6 +229,18 @@ func flowMessageFiltered(fmsg *flowmessage.FlowMessage) []flowMessageItem {
 			message = append(message, flowMessageItem{"HasPPP", fmt.Sprintf("%v", fmsg.HasPPP)})
 		case "PPPAddressControl":
 			message = append(message, flowMessageItem{"PPPAddressControl", fmt.Sprintf("%v", fmsg.PPPAddressControl)})
+		case "K8sSrcPodName":
+			message = append(message, flowMessageItem{"K8sSrcPodName", fmt.Sprintf("%v", "TEST_SRC_POD")})
+		case "K8sSrcPodNamespace":
+			message = append(message, flowMessageItem{"K8sSrcPodNamespace", fmt.Sprintf("%v", "TEST_SRC_POD_NAMESPACE")})
+		case "K8sSrcPodNode":
+			message = append(message, flowMessageItem{"K8sSrcPodNode", fmt.Sprintf("%v", "TEST_SRC_POD_NODE")})
+		case "K8sDstPodName":
+			message = append(message, flowMessageItem{"K8sDstPodName", fmt.Sprintf("%v", "TEST_DST_POD")})
+		case "K8sDstPodNamespace":
+			message = append(message, flowMessageItem{"K8sDstPodNamespace", fmt.Sprintf("%v", "TEST_DST_POD_NAMESPACE")})
+		case "K8sDstPodNode":
+			message = append(message, flowMessageItem{"K8sDstPodNode", fmt.Sprintf("%v", "TEST_DST_POD_NODE")})
 		}
 	}
 
