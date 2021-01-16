@@ -4,7 +4,7 @@ GOOS ?= linux
 ARCH ?= $(shell uname -m)
 BUILDINFOSDET ?= 
 
-DOCKER_REPO   := cloudflare/
+DOCKER_REPO   := quay.io/rcarrillocruz/
 GOFLOW_NAME    := goflow
 GOFLOW_VERSION := $(shell git describe --tags $(git rev-list --tags --max-count=1))
 VERSION_PKG   := $(shell echo $(GOFLOW_VERSION) | sed 's/^v//g')
