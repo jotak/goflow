@@ -9,5 +9,6 @@ require (
 	github.com/prometheus/client_golang v0.9.2
 	github.com/sirupsen/logrus v1.4.1
 	github.com/stretchr/testify v1.6.1
-	k8s.io/client-go v0.20.1 // indirect
+	k8s.io/apimachinery v0.20.1
+	k8s.io/client-go v0.20.1
 )

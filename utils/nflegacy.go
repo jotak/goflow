@@ -75,12 +75,7 @@ func (s *StateNFLegacy) DecodeFlow(msg interface{}) error {
 	for _, fmsg := range flowMessageSet {
 		fmsg.TimeReceived = ts
 		fmsg.SamplerAddress = samplerAddress
-		fmsg.K8SSrcPodName = "TEST_SRC_POD_NAME"
-		fmsg.K8SSrcPodNamespace = "TEST_SRC_POD_NAMESPACE"
-		fmsg.K8SSrcPodNode = "TEST_SRC_POD_NODE"
-		fmsg.K8SDstPodName = "TEST_DST_POD_NAME"
-		fmsg.K8SDstPodNamespace = "TEST_DST_POD_NAMESPACE"
-		fmsg.K8SDstPodNode = "TEST_DST_POD_NODE"
+		enrich(fmsg)
 	}
 
 	if s.Transport != nil {

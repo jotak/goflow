@@ -317,6 +317,7 @@ func (s *StateNetFlow) DecodeFlow(msg interface{}) error {
 					"version": "10",
 				}).
 				Observe(float64(timeDiff))
+			enrich(fmsg)
 		}
 	}
 
