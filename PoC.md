@@ -1,5 +1,7 @@
 # PoC for OpenShift
 
+- Pre-requisite: have a running OpenShift cluster with ovn-k, version 4.8 at least.
+
 - Clone this repo
 
 ```bash
