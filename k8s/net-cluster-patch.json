@@ -1,0 +1,7 @@
+[
+  {
+    "op": "add",
+    "path": "/spec",
+    "value": {"exportNetworkFlows": {"netFlow": { "collectors": ["COLLECTOR_IP:2056"]}}}
+  }
+]
