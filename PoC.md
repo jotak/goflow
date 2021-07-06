@@ -1,4 +1,4 @@
-# PoC for OpenShift
+## OpenShift
 
 - Pre-requisite: have a running OpenShift cluster with ovn-k, version 4.8 at least.
 
@@ -24,7 +24,20 @@ oc get networks.operator.openshift.io cluster -ojsonpath='{.spec.exportNetworkFl
 oc logs svc/goflow --follow
 ```
 
+## Upstream ovn-kubernetes
+
+E.g. using KIND: https://github.com/ovn-org/ovn-kubernetes/blob/master/docs/kind.md
+
+```bash
+cd goflow
+git checkout enrich_k8s
+kubectl apply -f k8s/goflow.yaml
+COLLECTOR_IP=`kubectl get svc goflow -ojsonpath='{.spec.clusterIP}'` && echo $COLLECTOR_IP
+kubectl set env daemonset/ovnkube-node -c ovnkube-node -n ovn-kubernetes OVN_NETFLOW_TARGETS="$COLLECTOR_IP:2056"
+```
+
+
 ## Next steps
 
-- Deploy ES, feed ES
+- Deploy ES, feed ES (or Loki)
 - Use informers to watch kube resources for enrichment
